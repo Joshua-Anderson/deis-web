@@ -1,0 +1,35 @@
+.login-background {
+  background-color: #ecf0f1;
+  padding-top: 70px;
+}
+
+.login-input {
+  background-color: #ecf0f1;
+}
+
+.login-foreground {
+  background-color: #ffffff;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 250px;
+  height: 300px;
+  border-radius: 5px;
+}
+
+.login-image {
+  display: block;
+  margin: 0 auto;
+}
+
+html {
+  height: 100%;
+  min-height: 100%;
+}
+
+.ng-scope {
+  height: 100%;
+  min-height: 100%;
+}
