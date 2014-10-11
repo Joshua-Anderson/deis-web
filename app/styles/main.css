@@ -11,11 +11,11 @@
   background-color: #ffffff;
   margin: 0 auto;
   padding-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 45px;
   padding-left: 20px;
   padding-right: 20px;
   width: 250px;
-  height: 300px;
+  height: auto;
   border-radius: 5px;
 }
 
@@ -33,3 +33,24 @@ html {
   height: 100%;
   min-height: 100%;
 }
+
+.form-invalid {
+  border: 1px solid transparent;
+  border-color: #d9534f;
+}
+
+@keyframes shake {
+  0% {transform: translateX(0);}
+  12.5% {transform: translateX(-6px) rotateY(-5deg)}
+  37.5% {transform: translateX(5px) rotateY(4deg)}
+  62.5% {transform: translateX(-3px) rotateY(-2deg)}
+  87.5% {transform: translateX(2px) rotateY(1deg)}
+  100% {transform: translateX(0)}
+}
+
+.shake {
+  animation: shake 400ms ease-in-out;
+}
+
+/* Fixes Bootstrap bug. See  https://angular-ui.github.io/bootstrap/ */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

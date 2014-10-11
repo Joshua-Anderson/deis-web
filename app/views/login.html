@@ -1,9 +1,32 @@
 <div class="login-background">
-  <form novalidate class="login-foreground">
+  <form name="loginForm" shake-form novalidate class="login-foreground">
     <img src="images/deis-logo.png" alt="Deis" class="login-image"><br>
 
-    Username <input type="text" class="form-control login-input" ng-model="user.name" /><br />
-    Password <input type="password" class="form-control login-input" ng-model="user.password" /><br />
-    <button class="btn btn-primary pull-right" ng-click="">Login</button>
+    <alert type="danger" ng-show="loginForm.controller.$dirty && loginForm.controller.$invalid && loginForm.submitted">
+      Invalid Controller Url
+    </alert>
+
+    <alert type="danger" ng-show="loginForm.controller.$error.required && loginForm.submitted">
+      Controller Url Required
+    </alert>
+
+    <alert type="danger" ng-show="loginForm.username.$error.required && loginForm.submitted">
+      Username Required
+    </alert>
+
+    <alert type="danger" ng-show="loginForm.password.$error.required && loginForm.submitted">
+      Password Required
+    </alert>
+
+    Controller Url<input type="url" ng-class="((loginForm.controller.$dirty && loginForm.controller.$invalid && loginForm.submitted) || (loginForm.controller.$error.required && loginForm.submitted)) && 'form-invalid'"
+                   class="form-control login-input" name="controller" ng-model="user.controller"
+                   required/><br/>
+    Username <input type="text" ng-class="(loginForm.username.$error.required && loginForm.submitted) && 'form-invalid'"
+              class="form-control login-input" name="username" ng-model="user.name"
+              required/><br/>
+    Password <input type="password" ng-class="(loginForm.password.$error.required && loginForm.submitted) && 'form-invalid'"
+              class="form-control login-input" name="password" ng-model="user.password"
+              required/><br/>
+    <button type="submit" class="btn btn-primary pull-right" click="login(user)">Login</button>
   </form>
 </div><!-- /.login-background -->

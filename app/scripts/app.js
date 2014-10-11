@@ -1,7 +1,9 @@
 angular
   .module('deisWebApp', [
     'ngResource',
-    'ngRoute'
+    'ngRoute',
+    'ngAnimate',
+    'ui.bootstrap'
   ])
   .config(function ($routeProvider) {
     $routeProvider
