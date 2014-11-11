@@ -1,4 +1,4 @@
-angular.module('deisWebApp').service('authService', function authService($http, $q) {
+angular.module('deisWebApp').service('authService', ['$http', '$q', '$cookieStore', '$location', function authService($http, $q, $cookieStore, $location) {
     function login(controller, name, password) {
       var request = $http({
         method: 'post',
@@ -13,7 +13,8 @@ angular.module('deisWebApp').service('authService', function authService($http, 
     }
 
     function loginSuccess(response) {
-      return(response.data);
+      $cookieStore.put('token', response.data.token);
+      return;
     }
 
     function loginError(response) {
@@ -28,7 +29,27 @@ angular.module('deisWebApp').service('authService', function authService($http, 
        return($q.reject(response.data.message));
     }
 
+    function getToken() {
+      return $cookieStore.get('token');
+    }
+
+    function isAuthenticated() {
+      if(getToken() === undefined) {
+          console.log('not working');
+          $location.path('/login');
+      } else {
+        console.log('hi');
+      }
+    }
+
+    function logout() {
+      $cookieStore.remove('token');
+      $location.path('/login');
+    }
+
     return({
-      login: login
+      login: login,
+      isAuthenticated: isAuthenticated,
+      logout: logout
     });
-  });
+  }]);

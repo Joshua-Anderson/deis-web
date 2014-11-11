@@ -1,5 +1,5 @@
 angular.module('deisWebApp')
-  .controller('LoginCtrl', ['$scope', '$q', 'authService', function ($scope, $q, authService) {
+  .controller('LoginCtrl', ['$scope', '$q', '$location', 'authService', function ($scope, $q, $location, authService) {
     $scope.submitted = false;
 
     $scope.alerts = [];
@@ -10,16 +10,15 @@ angular.module('deisWebApp')
       $scope.alerts = [];
       authService.login($scope.user.controller, $scope.user.name, $scope.user.password)
         .then(
-          function(data) {
-            console.log(data);
-            deferred.resolve('It works!');
+          function() {
+            deferred.resolve();
+            $location.path('/');
           },
           function(data) {
             deferred.reject();
             $scope.alerts.push({'type' : 'danger', 'msg' : data});
           }
         );
-        console.log('Username: ' + $scope.user.name + ' Password: ' + $scope.user.password + ' Controller: ' + $scope.user.controller);
         return deferred.promise;
     };
   }])
