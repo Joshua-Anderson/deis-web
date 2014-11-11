@@ -18,6 +18,8 @@
       Password Required
     </alert>
 
+  <alert ng-repeat="alert in alerts" type="{{alert.type}}">{{alert.msg}}</alert>
+
     Controller Url<input type="url" ng-class="((loginForm.controller.$dirty && loginForm.controller.$invalid && loginForm.submitted) || (loginForm.controller.$error.required && loginForm.submitted)) && 'form-invalid'"
                    class="form-control login-input" name="controller" ng-model="user.controller"
                    required/><br/>
@@ -27,6 +29,6 @@
     Password <input type="password" ng-class="(loginForm.password.$error.required && loginForm.submitted) && 'form-invalid'"
               class="form-control login-input" name="password" ng-model="user.password"
               required/><br/>
-    <button type="submit" class="btn btn-primary pull-right" click="login(user)">Login</button>
+    <button type="submit" class="btn btn-primary pull-right btn-lg" click="login(user)">Login</button>
   </form>
 </div><!-- /.login-background -->

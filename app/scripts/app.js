@@ -3,6 +3,7 @@ angular
     'ngResource',
     'ngRoute',
     'ngAnimate',
+    'ngCookies',
     'ui.bootstrap'
   ])
   .config(function ($routeProvider) {

@@ -2,7 +2,7 @@ angular.module('deisWebApp').service('authService', function authService($http, 
     function login(controller, name, password) {
       var request = $http({
         method: 'post',
-        url: controller.replace(/\/+$/,'') + '/auth/login', // Strip trailing slash from input  controller url
+        url: controller.replace(/\/+$/,'') + '/v1/auth/login/', // Strip trailing slash from input  controller url
         data: {
             username: name,
             password: password
@@ -17,8 +17,12 @@ angular.module('deisWebApp').service('authService', function authService($http, 
     }
 
     function loginError(response) {
-      if(! angular.isObject( response.data ) || ! response.data.message) {
-        return($q.reject('An unknown error occurred.'));
+      if(response.status === 0 || response.status === 404) {
+        return($q.reject('Controller not found'));
+      } else if(response.status === 400) {
+          return($q.reject('Invalid Username or Password'));
+      } else if(! angular.isObject( response.data ) || ! response.data.message) {
+          return($q.reject('An unknown error occurred.'));
       }
 
        return($q.reject(response.data.message));
