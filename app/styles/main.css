@@ -43,6 +43,22 @@ html {
   border-color: #d9534f;
 }
 
+.navbar-default {
+  border-radius: 0px;
+  min-height: 75px;
+  background: #ffffff;
+  box-shadow: 0px 0px 10px 2px #ababab;
+}
+
+.navbar-nav li a, .navbar-brand {
+  font-size: 30px;
+  line-height: 60px;
+}
+
+.navbar {
+  border: 0px;
+}
+
 @keyframes shake {
   0% {transform: translateX(0);}
   12.5% {transform: translateX(-6px) rotateY(-5deg)}

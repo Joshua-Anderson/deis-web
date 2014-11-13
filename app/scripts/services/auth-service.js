@@ -18,7 +18,6 @@ angular.module('deisWebApp').service('authService', ['$http', '$q', '$cookieStor
 
     function loginSuccess(response) {
       $cookieStore.put('token', response.data.token);
-      return;
     }
 
     function loginError(response) {
@@ -37,12 +36,14 @@ angular.module('deisWebApp').service('authService', ['$http', '$q', '$cookieStor
       return $cookieStore.get('token');
     }
 
+    function getUsername() {
+      return $cookieStore.get('username');
+    }
+
     function isAuthenticated() {
       if(getToken() === undefined) {
-          console.log('not working');
           $location.path('/login');
       } else {
-        console.log('hi');
       }
     }
 
@@ -56,6 +57,7 @@ angular.module('deisWebApp').service('authService', ['$http', '$q', '$cookieStor
     return({
       login: login,
       isAuthenticated: isAuthenticated,
-      logout: logout
+      logout: logout,
+      getUsername: getUsername
     });
   }]);

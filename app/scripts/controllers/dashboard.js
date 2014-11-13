@@ -3,4 +3,6 @@ angular.module('deisWebApp')
     $scope.logout = function() {
       authService.logout();
     };
+
+    $scope.username = authService.getUsername();
   }]);
