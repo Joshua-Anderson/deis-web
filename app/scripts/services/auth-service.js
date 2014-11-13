@@ -1,4 +1,5 @@
 angular.module('deisWebApp').service('authService', ['$http', '$q', '$cookieStore', '$location', function authService($http, $q, $cookieStore, $location) {
+
     function login(controller, name, password) {
       var request = $http({
         method: 'post',
@@ -8,6 +9,9 @@ angular.module('deisWebApp').service('authService', ['$http', '$q', '$cookieStor
             password: password
         }
       });
+
+      $cookieStore.put('controller', controller);
+      $cookieStore.put('username', name);
 
       return(request.then(loginSuccess, loginError));
     }
@@ -44,6 +48,8 @@ angular.module('deisWebApp').service('authService', ['$http', '$q', '$cookieStor
 
     function logout() {
       $cookieStore.remove('token');
+      $cookieStore.remove('controller');
+      $cookieStore.remove('username');
       $location.path('/login');
     }
 
